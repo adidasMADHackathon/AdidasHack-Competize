@@ -1,0 +1,117 @@
+
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p,
+	blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd,
+	q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li,
+	fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr,
+	th, td, article, aside, canvas, details, figcaption, figure, footer,
+	header, hgroup, menu, nav, section, summary, time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+
+html {
+  	height: 100%;
+}
+body {
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;	
+	-webkit-flex-direction: column;
+	-ms-flex-direction: column;
+	flex-direction: column;
+
+	background-color: #fafafa;
+	font: 1em 'Prompt', 'Open Sans', Verdana, Arial, sans-serif;
+	height: 100%;
+}
+
+#videos {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0px;
+    margin-left: auto;
+    margin-right: auto;
+}
+#subscriber {
+    position: absolute;
+    left: 0px;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+}
+#publisher {
+    position: absolute;
+    width: 360px;
+    height: 240px;
+    bottom: 10px;
+    left: 10px;
+    z-index: 100;
+    border: 3px solid white;
+    border-radius: 3px;
+}
+#adidasScoreboard {
+    position: absolute;
+    top: 30px;
+    left: 20px;
+    padding: 8px;
+    background: #333333;
+    z-index: 500;
+}
+#adidasResult {
+    padding-left: 8px;
+    padding-right: 8px;
+    color: #ffffff;
+    font-size: 0.9em;
+    vertical-align: top;
+}
+#adidasResult span {
+    vertical-align: top;
+}
+.adidasCrest {
+    height: 24px;
+    width: 24px;
+}
+.adidasTeamName {
+    vertical-align: top;
+    color: #ffffff;
+    font-size: 0.9em;
+}
+
+#adidasBigScoreboard {
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    z-index: 500;
+    	bottom: 20px;
+  	margin: 0 auto;
+  	width: 100%;
+  	left: 0px;
+    padding: 12px;
+}
+.adidasBigCrest {
+    height: 40px;
+    width: 40px;
+}
+.adidasBigTeamName {
+    vertical-align: top;
+    color: #ffffff;
+    font-size: 1.5em;
+}
+#adidasBigResult {
+    padding-left: 8px;
+    padding-right: 8px;
+    color: #ffffff;
+    font-size: 1.5em;
+    vertical-align: top;
+}
+#adidasBigResult span {
+    vertical-align: top;
+}
