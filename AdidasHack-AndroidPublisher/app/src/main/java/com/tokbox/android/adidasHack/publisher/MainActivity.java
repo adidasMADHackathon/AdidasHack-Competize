@@ -325,9 +325,11 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onSessionConnectionDataReady(String apiKey, String sessionId, String token) {
+        Log.i(LOG_TAG, "\n###############################################\n");
         Log.i(LOG_TAG, "api: " + apiKey);
         Log.i(LOG_TAG, "session: " + sessionId);
         Log.i(LOG_TAG, "token: " + token);
+        Log.i(LOG_TAG, "###############################################\n");
 
         mApiKey = apiKey;
         mSessionId = sessionId;
