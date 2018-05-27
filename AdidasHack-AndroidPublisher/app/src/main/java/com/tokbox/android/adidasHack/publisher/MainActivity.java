@@ -13,9 +13,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.app.AlertDialog;
+import android.widget.TextView;
 
 import com.github.hiteshsondhi88.libffmpeg.ExecuteBinaryResponseHandler;
 import com.github.hiteshsondhi88.libffmpeg.FFmpeg;
@@ -58,6 +60,7 @@ public class MainActivity extends AppCompatActivity
     private static final String LOG_TAG = MainActivity.class.getSimpleName();
     private static final int RC_SETTINGS_SCREEN_PERM = 123;
     private static final int RC_VIDEO_APP_PERM = 124;
+    private static final String TOKEN = "atwasdfszWQWECZXTR=£Y";
 
     private String idForTwitterCall = null;
 
@@ -77,8 +80,15 @@ public class MainActivity extends AppCompatActivity
     private FrameLayout mPublisherViewContainer;
 //    private FrameLayout mSubscriberViewContainer;
     private ImageView mArchivingIndicatorView;
+    private Button mLocalButton;
+    private Button mAwayButton;
+    private TextView mLocalScore;
+    private TextView mAwayScore;
 
     private Menu mMenu;
+
+    private int mLocalScoreValue = 0;
+    private int mAwayScoreValue = 0;
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -145,6 +155,70 @@ public class MainActivity extends AppCompatActivity
         } else {
             requestPermissions();
         }
+
+        mLocalButton = findViewById(R.id.buttonLocal);
+        mLocalButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mLocalScoreValue++;
+                mLocalScore.setText(Integer.toString(mLocalScoreValue));
+
+                new AsyncTask<Void, Void, Void>() {
+                    protected void onPreExecute() {
+                        // Pre Code
+                    }
+                    protected Void doInBackground(Void... unused) {
+                        String urlString = "https://www.competize.com/api/adidasscore";
+                        JSONObject req = new JSONObject();
+                        try {
+                            req.put("scoreHome", 1);
+                            req.put("scoreAway", 0);
+                            req.put("token", TOKEN);
+                            HTTPComms.callServer(urlString, req.toString(), null);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        return null;
+                    }
+                    protected void onPostExecute(Void unused) {
+                        // Post Code
+                    }
+                }.execute();
+            }
+        });
+        mAwayButton = findViewById(R.id.buttonAway);
+        mAwayButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAwayScoreValue++;
+                mAwayScore.setText(Integer.toString(mAwayScoreValue));
+
+                new AsyncTask<Void, Void, Void>() {
+                    protected void onPreExecute() {
+                        // Pre Code
+                    }
+                    protected Void doInBackground(Void... unused) {
+                        String urlString = "https://www.competize.com/api/adidasscore";
+                        JSONObject req = new JSONObject();
+                        try {
+                            req.put("scoreHome", 0);
+                            req.put("scoreAway", 1);
+                            req.put("token", TOKEN);
+                            HTTPComms.callServer(urlString, req.toString(), null);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        return null;
+                    }
+                    protected void onPostExecute(Void unused) {
+                        // Post Code
+                    }
+                }.execute();
+            }
+        });
+
+        mLocalScore = findViewById(R.id.textViewLocalScore);
+        mAwayScore = findViewById(R.id.textViewAwayScore);
     }
 
     @Override
@@ -390,6 +464,7 @@ public class MainActivity extends AppCompatActivity
                     JSONObject req = new JSONObject();
                     try {
                         req.put("id", idForTwitterCall);
+                        req.put("token", TOKEN);
                         HTTPComms.callServer(urlString, req.toString(), null);
                     } catch (JSONException e) {
                         e.printStackTrace();
