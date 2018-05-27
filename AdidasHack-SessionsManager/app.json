@@ -1,0 +1,20 @@
+{
+  "name": "Sessions Manager",
+  "description": "",
+  "keywords": [
+    "video",
+    "chat",
+    "communications"
+  ],
+  "repository": "https://github.com/franciscojrp/AdidasHack-Competize/AdidasHack-SessionsManager",
+  "env": {
+    "TOKBOX_API_KEY": {
+      "description": "OpenTok API key",
+      "required": true
+    },
+    "TOKBOX_SECRET": {
+      "description": "OpenTok API secret",
+      "required": true
+    }
+  }
+}
