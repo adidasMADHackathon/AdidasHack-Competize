@@ -356,6 +356,24 @@ public class MainActivity extends AppCompatActivity
         }
 
         setStartArchiveEnabled(true);
+
+        new AsyncTask<Void, Void, Void>() {
+            protected void onPreExecute() {
+                // Pre Code
+            }
+            protected Void doInBackground(Void... unused) {
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+            protected void onPostExecute(Void unused) {
+                // Post Code
+                startArchive();
+            }
+        }.execute();
     }
 
     @Override
